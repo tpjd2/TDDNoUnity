@@ -14,6 +14,8 @@ public class Coracao
         this.image = image;
     }
 
+    public float getPedacos() { return image.fillAmount * 4; }
+
     public void Recarregar(int pedacos)
     {
         if (pedacos < 0)

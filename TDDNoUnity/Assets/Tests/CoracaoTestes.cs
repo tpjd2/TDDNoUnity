@@ -10,17 +10,20 @@ namespace Tests
 {
     public class CoracaoTestes
     {
-        public class TestesMetodoRecarga
-        {
-            private Image img;
-            private Coracao cor;
 
-            [SetUp]
-            public void Config()
-            {
-                img = new GameObject().AddComponent<Image>();
-                cor = new Coracao(img);
-            }
+        private Image img;
+        private Coracao cor;
+
+        [SetUp]
+        public void Config()
+        {
+            img = new GameObject().AddComponent<Image>();
+            cor = new Coracao(img);
+        }
+
+        public class TestesMetodoRecarga : CoracaoTestes
+        {
+            
 
             [Test]
             public void imagemPreenchimento0Recarregamento0()
@@ -57,20 +60,16 @@ namespace Tests
 
                 Assert.AreEqual(1, img.fillAmount);
             }
+
+            [Test]
+            public void lancaExcecaoNumeroNegativo()
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(() => cor.Recarregar(-1));
+            }
         }
 
-        public class TestesMetodoDescarga
+        public class TestesMetodoDescarga : CoracaoTestes
         {
-            private Image img;
-            private Coracao cor;
-
-            [SetUp]
-            public void Config()
-            {
-                img = new GameObject().AddComponent<Image>();
-                cor = new Coracao(img);
-            }
-
             [Test]
             public void imagemPreenchimento1Descarregamento1()
             {
