@@ -6,15 +6,24 @@ using UnityEngine.UI;
 
 public class Coracao
 {
+    public static readonly int pedacosPorCoracao = 4;
     private const float preenchimentoPedaco = 0.25f;
     private readonly Image image;
+    public int pedacosPreenchidos{
+        get { return CalculaQuantidadePedacos(); }
+    }
+    public int pedacosVazios
+    {
+        get { return pedacosPorCoracao - CalculaQuantidadePedacos(); }
+    }
+
 
     public Coracao(Image image)
     {
         this.image = image;
     }
 
-    public float getPedacos() { return image.fillAmount * 4; }
+    public int CalculaQuantidadePedacos() { return (int)(image.fillAmount * pedacosPorCoracao); }
 
     public void Recarregar(int pedacos)
     {

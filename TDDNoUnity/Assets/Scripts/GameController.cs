@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private List<Image> imagens;
+    [SerializeField] private int quantidade;
     [SerializeField] private Image img;
 
-    private Coracao cor;
+    private Container container;
+    //private Coracao cor;
 
     // Start is called before the first frame update
     void Start()
     {
-        cor = new Coracao(img);
+        //cor = new Coracao(img);
+        container =
+            new Container(imagens.Select(img => new Coracao(img)).ToList());
     }
 
     // Update is called once per frame
@@ -20,12 +26,12 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            cor.Recarregar(1);
+            container.Recarregar(quantidade);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            cor.Descarregar(1);
+            container.Descarregar(quantidade);
         }
     }
 }

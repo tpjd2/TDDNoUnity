@@ -79,34 +79,27 @@ namespace Tests
                 container.Recarregar(1);
                 Assert.AreEqual(0.0f, alvo.fillAmount);
             }
+
+            [Test]
+            public void Container2CoracoesPreenchimento075Recarga2()
+            {
+                alvo.fillAmount = 0.0f;
+                corAlvo = new Coracao(alvo);
+
+                Image imgAux = new GameObject().AddComponent<Image>();
+                imgAux.fillAmount = 0.75f;
+                Coracao corAux = new Coracao(imgAux);
+
+                container = new Container(new List<Coracao> { corAux, corAlvo });
+
+                container.Recarregar(2);
+                Assert.AreEqual(0.25f, alvo.fillAmount);
+            }
         }
 
         public class TestesMetodoDescarga
         {
 
-        }
-    }
-
-    public class Container
-    {
-        private List<Coracao> list;
-
-        public Container(List<Coracao> list)
-        {
-            this.list = list;
-        }
-
-        public void Recarregar(int pedacos)
-        {
-            int recarregar = pedacos;
-            foreach (Coracao temp in list)
-            {
-                if (recarregar > 0 && temp.getPedacos() < 4)
-                {
-                    temp.Recarregar(pedacos);
-                    recarregar -= 1;
-                }
-            }
         }
     }
 }
